@@ -1,7 +1,7 @@
 
 # Azure Networking Log Converter
 
-Code for downloading operational network logs and converting them to .CSV files.  Files can to be then uploaded to Power BI for analysis.
+Code for downloading operational network logs and converting them to .CSV files.  Files can then be uploaded to Power BI for analysis.
 ## Running this sample
 ### Prerequisites:
 
