@@ -17,4 +17,4 @@ The current tools/tool-sets are:
 
 <!--Link References-->
 [LogConverter]: https://github.com/Azure/NetworkMonitoring/tree/master/LogConverter "LogConverter tree"
-[AzureCT]: https://github.com/Azure/NetworkMonitoring/tree/master/OnPremiseConnectivityTool "AzureCT tree"
+[AzureCT]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT "AzureCT tree"
