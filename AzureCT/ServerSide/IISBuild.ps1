@@ -3,7 +3,7 @@
 # (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/ServerSide/IISBuild.ps1") | Invoke-Expression
 
 $GitHubBranch = "vnext"
-$GitHUbRepo = "https://raw.githubusercontent.com/Azure/NetworkMonitoring/$GitHubBranch/AzureCT/ServerSide/"
+$GitHubRepo = "https://raw.githubusercontent.com/Azure/NetworkMonitoring/$GitHubBranch/AzureCT/ServerSide/"
 
 # Must be run from an elevated PS prompt!
     If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
@@ -56,7 +56,7 @@ $GitHUbRepo = "https://raw.githubusercontent.com/Azure/NetworkMonitoring/$GitHub
     $FileName | ForEach{
         Try {
             $webClient = new-object System.Net.WebClient
-            $webClient.DownloadFile($GitHUbRepo + $FileName[$i], "c:\inetpub\wwwroot\" + $FileName[$i] )
+            $webClient.DownloadFile($GitHubRepo + $FileName[$i], "c:\inetpub\wwwroot\" + $FileName[$i] )
             Write-Host "Copied successfully:" $FileName[$i] 
         }
         Catch {
