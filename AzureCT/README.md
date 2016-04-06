@@ -14,7 +14,7 @@ If you just want to install the toolkit, this is a the place to start:
 
 1. Create a new Windows Server Azure VM on an ExpressRoute connected VNet
 2. On the new Azure VM, in an elevated PowerShell Prompt, run the following command:  **(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/ServerSide/IISBuild.ps1") | Invoke-Expression**
-3. On your local PC run the following command from PowerShell: **(new-object Net.WebClient).DownloadString("raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/PowerShell/Install-AzureCT.ps1") | Invoke-Expression**
+3. On your local PC run the following command from PowerShell: **(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/PowerShell/Install-AzureCT.ps1") | Invoke-Expression**
 4. On your local PC you now have the Get-AzureNetworkAvailability command to run availability tests!
 
 
@@ -31,7 +31,7 @@ This tool has three perquisite resources that must be in place before using:
 	- Install the AzureCT PowerShell module by running the following command in a PowerShell prompt:
 
 		```powershell
-		(new-object Net.WebClient).DownloadString("https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT/raw/master/PowerShell/Install-AzureCT.ps1") | Invoke-Expression
+		(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/PowerShell/Install-AzureCT.ps1") | Invoke-Expression
 		```
 	- This will install a new PowerShell module with six PowerShell cmdlets; Get-AzureNetworkAvailability, Clear-AzureCTHistory, Show-AzureCTResults, Get-HostName, Get-IPTrace, and Remove-AzureCT.
 2. Azure VM Instructions:
@@ -39,7 +39,7 @@ This tool has three perquisite resources that must be in place before using:
 	- Install the web application by running the following command in an elevated PowerShell prompt (ie "Run as Administrator") on the Azure VM.
 
 		```powershell
-		(new-object Net.WebClient).DownloadString("https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT/raw/master/ServerSide/IISBuild.ps1") | Invoke-Expression
+		(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/ServerSide/IISBuild.ps1") | Invoke-Expression
 		```
 
 	- This script will turn on ICMP (ping), install IIS, .Net 4.5, and copy some IIS application files from GitHub. If any errors occur with the file copies, or your server doesn't have access to the Internet, the files can be manually copied. Copy all files from the ServerSide directory of this GitHub to the C:\Inetpub\wwwroot folder on the server. **Note**: If needed, this script can be run multiple times on the server until all errors are resolved. If you manually copy the files, please run the script again to ensure proper file permissions are set on the files.
