@@ -1,11 +1,11 @@
 ﻿# Install-AzureCT Module
 # To kick me off from a URL run the following:
-# (new-object Net.WebClient).DownloadString("https://github.com/tracsman/AzureCT/raw/master/PowerShell/Install-AzureCT.ps1") | Invoke-Expression
+# (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/PowerShell/Install-AzureCT.ps1") | Invoke-Expression
 
 function Install-AzureCT {
 
-    $uri = 'https://github.com/tracsman/AzureCT/raw/master/PowerShell/AzureCT/'
-
+    $branch = "vnext"
+    $uri = "https://raw.githubusercontent.com/Azure/NetworkMonitoring/$branch/AzureCT/PowerShell/AzureCT/"
     $FileName = @()
     $FileName += 'AzureCT.psd1'
     $FileName += 'AzureCT.psm1'
@@ -13,6 +13,7 @@ function Install-AzureCT {
     $FileName += 'Public/Get-AzureNetworkAvailability.ps1'
     $FileName += 'Public/Get-HostName.ps1'
     $FileName += 'Public/Get-IPTrace.ps1'
+    $FileName += 'Public/Get-ServerSideTrace.ps1'
     $FileName += 'Public/Remove-AzureCT.ps1'
     $FileName += 'Public/Show-AzureCTResults.ps1'
     

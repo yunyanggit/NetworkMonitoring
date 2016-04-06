@@ -1,9 +1,9 @@
 ﻿# IIS Server Post Build Config Script
 # To kick me off from a URL run the following:
-# (new-object Net.WebClient).DownloadString("https://github.com/tracsman/AzureCT/raw/master/ServerSide/IISBuild.ps1") | Invoke-Expression
+# (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/ServerSide/IISBuild.ps1") | Invoke-Expression
 
-$GitHubBranch = "master"
-$GitHUbRepo = "https://raw.githubusercontent.com/tracsman/AzureCT/$GitHubBranch/ServerSide/"
+$GitHubBranch = "vnext"
+$GitHUbRepo = "https://raw.githubusercontent.com/Azure/NetworkMonitoring/$GitHubBranch/AzureCT/ServerSide/"
 
 # Must be run from an elevated PS prompt!
     If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
@@ -27,15 +27,22 @@ $GitHUbRepo = "https://raw.githubusercontent.com/tracsman/AzureCT/$GitHubBranch/
     # Stuff Array with FileNames
     $FileName += "AvailabilityDetail.xml"
     $FileName += "AvailabilityHeader.xml"
-	$FileName += "AvailabilityTrace.xml"
+    $FileName += "AvailabilityTrace.xml"
     $FileName += "ClearHistory.aspx"
     $FileName += "DisplayAvailability.css"
     $FileName += "DisplayAvailability.html"
     $FileName += "DisplayAvailability.js"
+	$FileName += "DisplayServerSideTrace.css"
+	$FileName += "DisplayServerSideTrace.html"
+	$FileName += "DisplayServerSideTrace.js"
     $FileName += "jquery.js"
+	$FileName += "ServerSideTraceDetail.xml"
+	$FileName += "ServerSideTraceHeader.xml"
     $FileName += "TemplateAvailabilityDetail.xml"
     $FileName += "TemplateAvailabilityHeader.xml"
-	$FileName += "TemplateAvailabilityTrace.xml"
+    $FileName += "TemplateAvailabilityTrace.xml"
+	$FileName += "TemplateServerSideTraceDetail.xml"
+	$FileName += "TemplateServerSideTraceHeader.xml"
     $FileName += "Upload.aspx"
     $FileName += "Web.config"
     $FileName += "WebTest.aspx"
@@ -64,10 +71,14 @@ $GitHUbRepo = "https://raw.githubusercontent.com/tracsman/AzureCT/$GitHubBranch/
     # Stuff Array with XML files
     $FileName += "C:\inetpub\wwwroot\AvailabilityDetail.xml"
     $FileName += "C:\inetpub\wwwroot\AvailabilityHeader.xml"
-	$FileName += "C:\inetpub\wwwroot\AvailabilityTrace.xml"
+    $FileName += "C:\inetpub\wwwroot\AvailabilityTrace.xml"
+    $FileName += "C:\inetpub\wwwroot\ServerSideTraceHeader.xml"
+    $FileName += "C:\inetpub\wwwroot\ServerSideTraceDetail.xml"
     $FileName += "C:\inetpub\wwwroot\TemplateAvailabilityDetail.xml"
     $FileName += "C:\inetpub\wwwroot\TemplateAvailabilityHeader.xml"
-	$FileName += "C:\inetpub\wwwroot\TemplateAvailabilityTrace.xml"
+    $FileName += "C:\inetpub\wwwroot\TemplateAvailabilityTrace.xml"
+    $FileName += "C:\inetpub\wwwroot\TemplateServerSideTraceHeader.xml"
+    $FileName += "C:\inetpub\wwwroot\TemplateServerSideTraceDetail.xml"
 
     # Loop through array and set file permissions
     $i=0
