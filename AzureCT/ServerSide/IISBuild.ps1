@@ -3,7 +3,7 @@
 # (new-object Net.WebClient).DownloadString("https://github.com/tracsman/AzureCT/raw/master/ServerSide/IISBuild.ps1") | Invoke-Expression
 
 $GitHubBranch = "master"
-$GitHUbRepo = "https://raw.githubusercontent.com/tracsman/AzureCT/$GitHubBranch/ServerSide/"
+$GitHUbRepo = "https://raw.githubusercontent.com/Azure/NetworkMonitoring/$GitHubBranch/AzureCT/ServerSide/"
 
 # Must be run from an elevated PS prompt!
     If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
