@@ -15,6 +15,7 @@ function Install-AzureCT {
     $FileName += 'Public/Get-IPTrace.ps1'
     $FileName += 'Public/Remove-AzureCT.ps1'
     $FileName += 'Public/Show-AzureCTResults.ps1'
+    $FileName += 'Get-AzureVPN-Monitoring'
     
    
     $Destination = Join-Path -Path ([Environment]::GetFolderPath('MyDocuments')) -ChildPath 'WindowsPowerShell\Modules\AzureCT\'
