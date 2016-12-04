@@ -1,10 +1,10 @@
 ﻿# Install-AzureCT Module
 # To kick me off from a URL run the following:
-# (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/PowerShell/Install-AzureCT.ps1") | Invoke-Expression
+# (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/yunyanggit/NetworkMonitoring/master/AzureCT/PowerShell/Install-AzureCT.ps1") | Invoke-Expression
 
 function Install-AzureCT {
 
-    $uri = 'https://raw.githubusercontent.com/Azure/NetworkMonitoring/master/AzureCT/PowerShell/AzureCT/'
+    $uri = 'https://raw.githubusercontent.com/yunyanggit/NetworkMonitoring/master/AzureCT/PowerShell/AzureCT/'
 
     $FileName = @()
     $FileName += 'AzureCT.psd1'
