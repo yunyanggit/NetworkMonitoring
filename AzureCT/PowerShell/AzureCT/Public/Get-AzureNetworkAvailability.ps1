@@ -1,53 +1,5 @@
-﻿function Get-AzureNetworkAvailability {
-    <#
-    .SYNOPSIS
-        Makes repeated calls to a web site on a private vnet and logs the success/failure and response times.
 
-    .DESCRIPTION
-        Generate, collect, and store availability statistics of the network between you and a newly built Windows VM in Azure.
-        It is designed to provide an indication, over time, of the link between a Virtual Machine in Azure and an on-premise
-        network. While the focus is on network availability, the test is done from a PC client to an IIS server in Azure.
-        This provides a view into the availability of an end-to-end scenario, not just a single point or component in the
-        complex chain that makes up a VPN or an ExpressRoute network connection. The hope is that this will provide insight
-        into the end-to-end network availability.
-        
-        The resultant data set does not provide rich insight if a problem is encountered during a test, over time this will
-        improve but this initial release only reflects the statistics around availability seen while an active test is running.
 
-        Local Host Output of this command will show:
-         ! - Successfull Call
-         . - Unsuccsefull Call (timeout)
-         * - IP was reached but wrong data or error (404) was returned
-
-        At the end of this function a summary block will display summary information of the entire data set collect.
-        The data set, stored locally in XML, will be uploaded to the IIS server in Azure.
-        At the conslusion of this command a web browser will be initiated to show a web page from the IIS Server to observe
-        the collected data.
-
-    .PARAMETER RemoteHost
-        This parameter is required and is the Azure VM VNet IP Address.
-
-    .PARAMETER DurationMinutes
-        This optional parameter signifies the duration of the Get-AzureNetworkAvailability command in minutes. It is an
-        integer value (whole number). The default value is 1.
-
-    .PARAMETER TimeoutSeconds
-        This optional parameter signifies how long each call will wait for a response. The default value is 5 seconds.
-
-    .EXAMPLE
-        Get-AzureNetworkAvailability -RemoteHost 10.0.0.1
-
-        # Get network availability stats from a web server at 10.0.0.1 for one minute (default duration)
-
-    .EXAMPLE
-        Get-AzureNetworkAvailability -RemoteHost 10.0.0.1 -DurationMinutes 600
-
-        # Get network availability stats from a web server at 10.0.0.1 for ten hours (600 minutes)
-
-    .EXAMPLE
-        (Get-AzureVM -ServiceName 'myServiceName' -Name 'myVMName').IpAddress | Get-AzureNetworkAvailability
-
-        # Pull local IP address from a VM in Azure and pipe it to the Get-AzureNetworkAvailability cmdlet
 
     .LINK
         https://github.com/tracsman/AzureCT
