@@ -8,7 +8,7 @@
                   HelpMessage='Enter IP Address of Remote Azure VM')]
        [ipaddress]$RemoteHost,
        [int]$DurationMinutes=1,
-       [int]$TimeoutSeconds=5,
+       [int]$TimeoutSeconds=15,
        [int]$AlertMin = 3
     )
     # Initialize
@@ -33,6 +33,26 @@
     [int]$AlertCount=0
     [int]$HealthyCount=0
  
+    $vpn_down_mailParam = @{
+	    To = "rarumugam@ingenesis.org"
+		    From = "Azure VPN <vpnconnectionalert@ingenesis.org>"
+		    Subject = "Alert: Azure VPN down!!!"
+		    Body = "Packets are not healthy, Please check out Azure VPN connection! Monitoring is on, Email Notice will b
+		    sent out as soon as connection back to healthy. "
+
+		    SmtpServer = "ig-smtp-01.ingenesis.org"
+    }
+
+    $vpn_up_mailParam = @{
+	    To = "yunyang8@gmail.com"
+		    From = "Azure VPN <vpnconnectionalert@ingenesis.org>"
+		    Subject = "Notice: Azure VPN connection back to healthy"
+		    Body = "Azure VPN connection has been back to healthy, monitoring continues. "
+
+		    SmtpServer = "ig-smtp-01.ingenesis.org"
+
+    }
+
    
     # Check for Header File
     If ((Test-Path $HeaderFileName) -eq $false) {
@@ -142,9 +162,18 @@
             If ($CallDuration.TotalMilliseconds -lt $JobMin) {$JobMin = $CallDuration.TotalMilliseconds}
             If ($CallDuration.TotalMilliseconds -gt $JobMax) {$JobMax = $CallDuration.TotalMilliseconds}
             If ($Valid) {$CallArray += $CallDuration.TotalMilliseconds}
-            # Send out alert for VPN outage
-             If (-not $AlertFlag -and $AlertCount -gt $AlertMin ) {$AlertFlag = $true; write-host "Email VPN connection disconnect alert"}
-             If ( $AlertFlag -and $HealthyCount -gt $AlertMin ) {$AlertFlag = $false; write-host "Email VPN connection back to healthy"}
+
+# Send out alert for VPN outage
+	     If (-not $AlertFlag -and $AlertCount -gt $AlertMin ) {
+		     $AlertFlag = $true;
+		     write-host "Email VPN connection disconnect alert";
+		     Send-MailMessage @vpn_down_mailParam
+	     }
+	     ElseIf ( $AlertFlag -and $HealthyCount -gt $AlertMin ) {
+		     $AlertFlag = $false;
+		     write-host "Email VPN connection back to healthy"
+			     Send-MailMessage @vpn_up_mailParam
+	     }
   
             # Create Job Details xml
             $JobDetail=""
@@ -276,8 +305,9 @@
         If ($HeaderUploadResponse -eq "Good" -and $DetailUploadResponse -eq "Good" -and $TraceUploadResponse -eq "Good") {
             Write-Host "Data uploaded to remote server successfully”
             # Spawn local web browser showing report details from server
-            Write-Host "Launching browser to http://$RemoteHost"
-            Start-Process -FilePath "http://$RemoteHost"
+
+            #Write-Host "Launching browser to http://$RemoteHost"
+            #Start-Process -FilePath "http://$RemoteHost"
             # Close and Clean Up
             # Clean up local files
             Remove-Item $HeaderFileName
